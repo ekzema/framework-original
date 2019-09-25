@@ -8,7 +8,7 @@
 
 namespace vendor\core;
 
-use http\Env\Response;
+
 use vendor\core\Registry;
 
 class App

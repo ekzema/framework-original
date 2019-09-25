@@ -4,9 +4,10 @@ error_reporting(-1);
 use vendor\core\Router;
 $query = rtrim($_SERVER['QUERY_STRING'], '/');
 define('www', __DIR__);
-define('CORE', dirname(__DIR__).'/vendor/core');
+define('CORE', dirname(__DIR__) . '/vendor/core');
 define('ROOT', dirname(__DIR__));
-define('APP', dirname(__DIR__).'/app');
+define('APP', dirname(__DIR__) . '/app');
+define('CACHE', dirname(__DIR__) . '/tmp/cache');
 define('LAYOUT', 'default');
 
 require '../vendor/libs/functions.php';
@@ -19,7 +20,7 @@ spl_autoload_register(function($class){
     }
 });
 
-new \vendor\core\App();
+new \vendor\core\App;
 
 Router::add('^page/(?P<action>[a-z-]+)/(?P<alias>[a-z-]+)$', ['controller' => 'Page']);
 Router::add('^page/(?P<alias>[a-z-]+)$', ['controller' => 'Page', 'action' => 'view']);

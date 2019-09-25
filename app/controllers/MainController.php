@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 use app\models\Main;
+use vendor\core\App;
+
 /**
  * Created by PhpStorm.
  * User: Denis
@@ -17,6 +19,9 @@ class MainController extends AppController
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
         $model = new Main;
         $posts = $model->finadAll();
+//        App::$app->cache->set('posts', $posts);
+//        App::$app->cache->get('posts');
+//        App::$app->cache->delete('posts');
 //        $post = $model->findOne(1);
 //        $data = $model->findBySql("SELECT * FROM posts ORDER BY id DESC LIMIT 2");
         $data = $model->findLike('e', 'title');
