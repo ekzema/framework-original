@@ -29,4 +29,13 @@ class MainController extends AppController
         $name = 'Денис';
         $this->set(['name' => $name, 'posts' => $posts ]);
     }
+
+    public function testAction()
+    {
+        if ($this->isAjax()) {
+            echo 'This response Json';
+            exit;
+        }
+        echo 'This response Html';
+    }
 }
