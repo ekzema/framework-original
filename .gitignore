@@ -26,5 +26,6 @@ vendor/*
 !vendor/core/
 !vendor/libs/
 !vendor/fw/
+!vendor/widgets/
 public/images/*
 !public/images/.gitkeep

@@ -34,13 +34,13 @@ class Db
         return $stmt->execute($params);
     }
 
-    public function query($sql, $params = []){
+    public function query($sql, $params = [], $setting = null){
         self::$countSql++;
         self::$queries[] = $sql;
         $stmt = $this->pdo->prepare($sql);
         $res =  $stmt->execute($params);
         if ($res !== false) {
-            return $stmt->fetchAll();
+            return $stmt->fetchAll($setting);
         }
         return [];
     }

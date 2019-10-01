@@ -1,8 +1,10 @@
 <?php
 
 namespace app\controllers;
+use app\models\Categories;
 use app\models\Main;
 use vendor\core\App;
+use vendor\widgets\menu\Menu;
 
 /**
  * Created by PhpStorm.
@@ -19,6 +21,8 @@ class MainController extends AppController
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
         $model = new Main;
         $posts = $model->finadAll();
+        $dsds = new Menu();
+        print_r($dsds);exit;
 //        App::$app->cache->set('posts', $posts);
 //        App::$app->cache->get('posts');
 //        App::$app->cache->delete('posts');
