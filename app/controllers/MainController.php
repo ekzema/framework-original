@@ -22,7 +22,6 @@ class MainController extends AppController
         $model = new Main;
         $posts = $model->finadAll();
         $dsds = new Menu();
-        print_r($dsds);exit;
 //        App::$app->cache->set('posts', $posts);
 //        App::$app->cache->get('posts');
 //        App::$app->cache->delete('posts');

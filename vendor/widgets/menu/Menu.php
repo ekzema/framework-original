@@ -1,6 +1,7 @@
 <?php
 namespace vendor\widgets\menu;
-use app\models\Categories;
+
+use vendor\libs\Cache;
 
 class Menu
 {
@@ -8,21 +9,46 @@ class Menu
     protected $tree;
     protected $menuHtml;
     protected $tpl;
-    protected $container;
-    protected $table;
-    protected $cache;
+    protected $class = 'menu';
+    protected $container = 'ul';
+    protected $table = 'app\models\Categories';
+    protected $cache = 3600;
+    protected $cacheKey = 'fw_menu';
 
-    public function __construct()
+    public function __construct($options = [])
     {
+        $this->tpl = __DIR__ . '/menu_tpl/menu.php';
+        $this->getOptions($options);
         $this->run();
+    }
+
+    protected function getOptions($options)
+    {
+        foreach ($options as $key => $value) {
+            if (property_exists($this, $key))
+                $this->$key = $value;
+        }
     }
 
     public function run()
     {
-        $categoryObject = new Categories();
-        $this->data = $categoryObject->finadAllUnique();
-        $this->tree = $this->getTree();
-        print_r($this->tree);exit;
+        $cache = new Cache();
+        $this->menuHtml = $cache->get($this->cacheKey);
+        if (!$this->menuHtml) {
+            $categoryObject = new $this->table();
+            $this->data = $categoryObject->finadAllUnique();
+            $this->tree = $this->getTree();
+            $this->menuHtml = $this->getMenuHtml($this->tree);
+            $cache->set($this->cacheKey, $this->menuHtml, $this->cache);
+        }
+        $this->output();
+    }
+
+    protected function output()
+    {
+        echo "<{$this->container} class='{$this->class}'>";
+            echo $this->menuHtml;
+        echo "</{$this->container}>";
     }
 
     protected function getTree()
@@ -41,10 +67,16 @@ class Menu
 
     protected function getMenuHtml($tree, $tab = '')
     {
-
+        $str = '';
+        foreach ($tree as $id => $category) {
+            $str .= $this->catToTemplate($category, $tab, $id);
+        }
+        return $str;
     }
 
     protected function catToTemplate($category, $tab, $id) {
-
+        ob_start();
+        require $this->tpl;
+        return ob_get_clean();
     }
 }
