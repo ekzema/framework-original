@@ -8,7 +8,9 @@ class UserController extends ApController
 {
     public function indexAction()
     {
-        echo __METHOD__;
+        $test = 'Тестова переменная';
+        $data = ['test', 2];
+        $this->set(compact('test', 'data'));
     }
 
     public function testAction()

@@ -34,7 +34,7 @@ class View
         if(is_file($file_view)){
             require $file_view;
         } else{
-            echo "<p>Не найден вид <b>$file_view</b></p>";
+            throw new \Exception("<p>Не найден вид <b>$file_view</b></p>", 404);
         }
         $content = ob_get_clean();
         if(false !== $this->layout){
@@ -42,7 +42,7 @@ class View
             if(is_file($file_layout)){
                 require $file_layout;
             } else {
-                echo "<p>Не найден шаблон <b>$file_layout</b></p>";
+                throw new \Exception("<p>Не найден шаблон <b>$file_layout</b></p>", 404);
             }
         }
     }
