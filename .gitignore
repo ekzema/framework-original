@@ -23,9 +23,6 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 vendor/*
-!vendor/core/
-!vendor/libs/
 !vendor/fw/
-!vendor/widgets/
 public/images/*
 !public/images/.gitkeep
