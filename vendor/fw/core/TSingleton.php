@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 26.09.2019
- * Time: 14:36
- */
 
-namespace vendor\core;
+namespace fw\core;
 
 
 trait TSingleton

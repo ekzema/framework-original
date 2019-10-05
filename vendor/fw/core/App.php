@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 25.09.2019
- * Time: 10:46
- */
 
-namespace vendor\core;
+namespace fw\core;
 
-
-use vendor\core\Registry;
-use vendor\core\ErrorHandler;
+use fw\core\Registry;
+use fw\core\ErrorHandler;
 
 class App
 {

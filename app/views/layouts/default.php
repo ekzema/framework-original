@@ -22,8 +22,8 @@
 <h1>Hello, world!</h1>
 <?= $content ?>
 
-<?= debug(vendor\core\Db::$countSql) ?>
-<?= debug(vendor\core\Db::$queries) ?>
+<?= debug(fw\core\Db::$countSql) ?>
+<?= debug(fw\core\Db::$queries) ?>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Denis
- * Date: 15.12.2017
- * Time: 0:54
- */
 
-namespace vendor\core\base;
-use \vendor\core\Db;
+namespace fw\core\base;
+
+use fw\core\Db;
 
 abstract class Model
 {

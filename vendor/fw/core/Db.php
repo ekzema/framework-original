@@ -1,12 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Denis
- * Date: 15.12.2017
- * Time: 0:53
- */
 
-namespace vendor\core;
+namespace fw\core;
 
 
 class Db

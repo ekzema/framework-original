@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Denis
- * Date: 12.12.2017
- * Time: 23:54
- */
 
-namespace vendor\core\base;
-
+namespace fw\core\base;
 
 class View
 {

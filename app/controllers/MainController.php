@@ -3,8 +3,8 @@
 namespace app\controllers;
 use app\models\Categories;
 use app\models\Main;
-use vendor\core\App;
-use vendor\widgets\menu\Menu;
+use fw\core\App;
+use fw\widgets\menu\Menu;
 
 /**
  * Created by PhpStorm.
