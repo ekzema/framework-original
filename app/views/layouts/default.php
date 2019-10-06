@@ -19,12 +19,21 @@
     <![endif]-->
 </head>
 <body>
+<div class="container">
+    <ul class="nav nav-pills">
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin">Admin</a></li>
+        <li><a href="/user/signup">Sign up</a></li>
+        <li><a href="/user/login">Login</a></li>
+        <li><a href="/user/logout">Logout</a></li>
+    </ul>
 <h1>Hello, world!</h1>
 <?= $content ?>
 
 <?= debug(fw\core\Db::$countSql) ?>
 <?= debug(fw\core\Db::$queries) ?>
 
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

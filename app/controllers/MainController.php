@@ -21,14 +21,12 @@ class MainController extends AppController
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
         $model = new Main;
         $posts = $model->finadAll();
-        $dsds = new Menu();
 //        App::$app->cache->set('posts', $posts);
 //        App::$app->cache->get('posts');
 //        App::$app->cache->delete('posts');
 //        $post = $model->findOne(1);
 //        $data = $model->findBySql("SELECT * FROM posts ORDER BY id DESC LIMIT 2");
         $data = $model->findLike('e', 'title');
-        debug($data);
         $name = 'Денис';
         $this->set(['name' => $name, 'posts' => $posts ]);
     }
