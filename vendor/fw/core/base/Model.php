@@ -31,12 +31,25 @@ abstract class Model
 
     public function validation($data)
     {
+        Validator::lang('ru');
         $v = new Validator($data);
         $v->rules($this->rules);
         if ($v->validate())
             return true;
         $this->errors = $v->errors();
         return false;
+    }
+
+    public function getErrors()
+    {
+        $errors = '<ul>';
+        foreach ($this->errors as $error) {
+            foreach ($error as $itme) {
+                $errors .= "<li>$itme</li>";
+            }
+        }
+        $errors .= '</ul>';
+        $_SESSION['error'] = $errors;
     }
 
     public function query($sql){
@@ -66,6 +79,18 @@ abstract class Model
         $table = $table ?: $this->table;
         $sql = "SELECT * FROM $table WHERE $field LIKE ?";
         return $this->pdo->query($sql, ['%' .$str. '%']);
+    }
+
+    public function save()
+    {
+        $params = [];
+        foreach ($this->attributes as $key => $val) {
+            $params[":{$key}"] = $val;
+        }
+        $fields = implode(', ', array_keys($this->attributes));
+        $values = implode(', ', array_keys($params));
+        $sql = "INSERT INTO $this->table ($fields) VALUES ($values)";
+        return $this->pdo->execute($sql, $params);
     }
 
 }

@@ -13,11 +13,18 @@ class UserController extends AppController
             $data = $_POST;
             $user = new User();
             $user->load($data);
-            if ($user->validation($data)) {
-                echo "Ok";
-            } else {
-                echo "No";
+            if (!$user->validation($data) || !$user->checkUnique()) {
+                $_SESSION['form_data'] = $data;
+                $user->getErrors();
+                redirect();
             }
+            $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
+            if ($user->save()) {
+                $_SESSION['success'] = 'Вы успешно зарегистрировались.';
+            } else {
+                $_SESSION['error'] = 'Произошла ошибка. Попробуйте позже.';
+            }
+            redirect();
         }
     }
 
