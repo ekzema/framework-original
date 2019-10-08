@@ -35,6 +35,13 @@ class UserController extends AppController
 
     public function logoutAction()
     {
+        if (!empty($_POST)) {
+            $user = new User();
+            if($user->login()) {
 
+            } else {
+
+            }
+        }
     }
 }

@@ -39,12 +39,32 @@ class User extends Model
             [$params['email'], $params['login']]
         );
         if ($user) {
-            if ($user[0]['login'] == $params['login'])
+            if ($user['login'] == $params['login'])
                 $this->errors['unique'][] = 'Этот логин уже занят';
-            if ($user[0]['email'] == $params['email'])
+            if ($user['email'] == $params['email'])
                 $this->errors['unique'][] = 'Этот почта уже занята';
             return false;
         }
         return true;
+    }
+
+    public function login()
+    {
+        $login = trim($_POST['login']);
+        $password = trim($_POST['password']);
+        if ($login && $password) {
+            $user = $this->findBySql(
+                "SELECT * FROM $this->table WHERE login = ? LIMIT 1",
+                [$login]
+            );
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    unset($user['password']);
+                    $_SESSION['user'] = $user;
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

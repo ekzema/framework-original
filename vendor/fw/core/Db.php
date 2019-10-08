@@ -34,7 +34,8 @@ class Db
         $stmt = $this->pdo->prepare($sql);
         $res =  $stmt->execute($params);
         if ($res !== false) {
-            return $stmt->fetchAll($setting);
+//            return $stmt->fetchAll($setting);
+            return $stmt->fetch($setting);
         }
         return [];
     }
