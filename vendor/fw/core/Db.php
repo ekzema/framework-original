@@ -28,14 +28,15 @@ class Db
         return $stmt->execute($params);
     }
 
-    public function query($sql, $params = [], $setting = null){
+    public function query($sql, $params = [], $findOne = false){
         self::$countSql++;
         self::$queries[] = $sql;
         $stmt = $this->pdo->prepare($sql);
         $res =  $stmt->execute($params);
         if ($res !== false) {
-//            return $stmt->fetchAll($setting);
-            return $stmt->fetch($setting);
+            if ($findOne)
+                return $stmt->fetch(\PDO::FETCH_OBJ);
+            return $stmt->fetchAll(\PDO::FETCH_OBJ);
         }
         return [];
     }

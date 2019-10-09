@@ -39,9 +39,9 @@ class User extends Model
             [$params['email'], $params['login']]
         );
         if ($user) {
-            if ($user['login'] == $params['login'])
+            if ($user->login == $params['login'])
                 $this->errors['unique'][] = 'Этот логин уже занят';
-            if ($user['email'] == $params['email'])
+            if ($user->email == $params['email'])
                 $this->errors['unique'][] = 'Этот почта уже занята';
             return false;
         }
@@ -53,13 +53,10 @@ class User extends Model
         $login = trim($_POST['login']);
         $password = trim($_POST['password']);
         if ($login && $password) {
-            $user = $this->findBySql(
-                "SELECT * FROM $this->table WHERE login = ? LIMIT 1",
-                [$login]
-            );
+            $user = $this->findOne($login, 'login');
             if ($user) {
-                if (password_verify($password, $user['password'])) {
-                    unset($user['password']);
+                if (password_verify($password, $user->password)) {
+                    unset($user->password);
                     $_SESSION['user'] = $user;
                     return true;
                 }
