@@ -59,7 +59,10 @@ abstract class Model
     public function finadAll(){
         $sql = "SELECT * FROM {$this->table}";
         return $this->pdo->query($sql);
-
+    }
+    public function count(){
+        $sql = "SELECT COUNT(*) AS count FROM {$this->table}";
+        return $this->pdo->query($sql, [], true)->count;
     }
     public function finadAllUnique($field = 'id') {
         $sql = "SELECT {$field}, {$this->table}.* FROM {$this->table}";

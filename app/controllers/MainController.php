@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\models\Categories;
 use app\models\Main;
 use fw\core\App;
+use fw\libs\Pagination;
 use fw\widgets\menu\Menu;
 
 /**
@@ -20,7 +21,12 @@ class MainController extends AppController
 //        $this->layout = false;
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
         $model = new Main;
-        $posts = $model->finadAll();
+        $total = $model->count();
+        $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        $perpage = 2;
+        $pagination = new Pagination($page, $perpage, $total);
+        $start = $pagination->getStart();
+        $posts = $model->findBySql("SELECT * FROM posts LIMIT {$start}, {$perpage}");
 //        App::$app->cache->set('posts', $posts);
 //        App::$app->cache->get('posts');
 //        App::$app->cache->delete('posts');
@@ -28,7 +34,7 @@ class MainController extends AppController
 //        $data = $model->findBySql("SELECT * FROM posts ORDER BY id DESC LIMIT 2");
         $data = $model->findLike('e', 'title');
         $name = 'Денис';
-        $this->set(['name' => $name, 'posts' => $posts ]);
+        $this->set(['name' => $name, 'posts' => $posts, 'pagination' => $pagination ]);
     }
 
     public function testAction()

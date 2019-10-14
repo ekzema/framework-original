@@ -15,6 +15,10 @@
             Panel content
         </div>
     </div>
-
     <?endforeach ?>
+    <div class="text-center">
+        <?php if ($pagination->countPage > 1 ) : ?>
+            <?= $pagination->getHtml() ?>
+        <?php endif; ?>
+    </div>
 </div>
