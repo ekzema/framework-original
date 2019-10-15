@@ -65,6 +65,22 @@ INSERT INTO `categories` (`id`, `title`, `parent`) VALUES
 	(895, 'iPhone 5 Lamborghini', 878);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 
+-- Дамп структуры для таблица framework.languages
+CREATE TABLE IF NOT EXISTS `languages` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `base` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
+
+-- Дамп данных таблицы framework.languages: 0 rows
+/*!40000 ALTER TABLE `languages` DISABLE KEYS */;
+INSERT INTO `languages` (`id`, `code`, `title`, `base`) VALUES
+	(1, 'ru', 'Русский', 1),
+	(2, 'en', 'English', 0);
+/*!40000 ALTER TABLE `languages` ENABLE KEYS */;
+
 -- Дамп структуры для таблица framework.posts
 CREATE TABLE IF NOT EXISTS `posts` (
   `id` int(10) unsigned NOT NULL DEFAULT '0',
@@ -97,10 +113,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) NOT NULL,
   `role` enum('user','admin') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1003 DEFAULT CHARSET=utf8;
 
--- Дамп данных таблицы framework.user: 0 rows
+-- Дамп данных таблицы framework.user: 2 rows
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` (`id`, `login`, `password`, `email`, `name`, `role`) VALUES
+	(1001, 'ekzema', '$2y$10$61RDwNwBDtnbfsURjwdGn.JBLAcNAcGtzR99vxnhciwwp0loGcM.K', 'd.kuzmenko@urancompany.com', 'fggffgfg', 'user'),
+	(1002, 'ekzema2', '$2y$10$JSzBZa2509IRe.072PlDq.ZaJydVwJjxMs9f83eZgRRYAzKeFMMXy', 'd.kuzmenko@urancomekzema2pany.com', 'ekzema2', 'user');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
