@@ -12,7 +12,8 @@ class AppController extends Controller
     {
         parent::__construct($route);
         new Main();
-        App::$app->setProperty('lang', Language::getLanguages());
+        App::$app->setProperty('langs', Language::getLanguages());
+        App::$app->setProperty('lang', Language::getLanguage(App::$app->getProperty('langs')));
         debug(App::$app->getProperties());
     }
 }

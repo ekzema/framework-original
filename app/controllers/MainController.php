@@ -5,6 +5,7 @@ use app\models\Categories;
 use app\models\Main;
 use fw\core\App;
 use fw\libs\Pagination;
+use fw\widgets\language\Language;
 use fw\widgets\menu\Menu;
 
 /**
@@ -18,10 +19,9 @@ class MainController extends AppController
 //    public $layout = 'main';
     public function indexAction()
     {
-        App::$app->setProperty('tesy', 'pojjp');
-        debug(App::$app->getProperties());
 //        $this->layout = false;
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
+        new Language();
         $model = new Main;
         $total = $model->count();
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -36,7 +36,7 @@ class MainController extends AppController
 //        $data = $model->findBySql("SELECT * FROM posts ORDER BY id DESC LIMIT 2");
         $data = $model->findLike('e', 'title');
         $name = 'Денис';
-        $this->set(['name' => $name, 'posts' => $posts, 'pagination' => $pagination ]);
+        $this->set(['name' => $name, 'posts' => $posts, 'pagination' => $pagination]);
     }
 
     public function testAction()
