@@ -12,9 +12,9 @@ class View
 
     public function __construct($route, $layout = '', $view = '') {
         $this->route = $route;
-        if($layout === false){
+        if ($layout === false) {
             $this->layout = false;
-        }else{
+        } else {
             $this->layout = $layout ?: LAYOUT;
         }
         $this->view = $view;

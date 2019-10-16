@@ -18,6 +18,8 @@ class MainController extends AppController
 //    public $layout = 'main';
     public function indexAction()
     {
+        App::$app->setProperty('tesy', 'pojjp');
+        debug(App::$app->getProperties());
 //        $this->layout = false;
 //        $res = $model->query("CREATE TABLE posts SELECT * FROM blog.bl_posts");
         $model = new Main;

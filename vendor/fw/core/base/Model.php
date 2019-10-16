@@ -60,14 +60,17 @@ abstract class Model
         $sql = "SELECT * FROM {$this->table}";
         return $this->pdo->query($sql);
     }
+
     public function count(){
         $sql = "SELECT COUNT(*) AS count FROM {$this->table}";
         return $this->pdo->query($sql, [], true)->count;
     }
+
     public function finadAllUnique($field = 'id') {
         $sql = "SELECT {$field}, {$this->table}.* FROM {$this->table}";
         return $this->pdo->query($sql, [], \PDO::FETCH_UNIQUE);
     }
+
     public function findOne($id, $field = ''){
         $field = $field ?: $this->pk;
         $sql = "SELECT * FROM {$this->table} WHERE $field = ? LIMIT 1";
