@@ -28,8 +28,11 @@ class Language
     {
         $lang = new Languages();
         $languages = $lang->findBySql('SELECT code, title, base FROM languages ORDER BY base DESC');
-        unset($languages[0]);
-        return json_decode(json_encode($languages), true);
+        $arr = [];
+        foreach ($languages as $lang) {
+            $arr[$lang->code] = (array)$lang;
+        }
+        return $arr;
     }
 
     public static function getLanguage($languages)
