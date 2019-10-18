@@ -22,3 +22,5 @@
         <?php endif; ?>
     </div>
 </div>
+
+<?= __('recent_post') ?>
