@@ -64,4 +64,9 @@ class User extends Model
         }
         return false;
     }
+
+    public static function isAdmin ()
+    {
+        return isset($_SESSION['user']) && $_SESSION['user']['role'] == 'admin';
+    }
 }

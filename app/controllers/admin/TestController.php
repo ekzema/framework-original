@@ -4,7 +4,7 @@
 namespace app\controllers\admin;
 
 
-class TestController extends ApController
+class TestController extends AppController
 {
     public function indexAction()
     {
