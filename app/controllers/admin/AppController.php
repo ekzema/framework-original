@@ -13,8 +13,7 @@ class AppController extends Controller
     {
         parent::__construct($route);
         if (!User::isAdmin() && $route['action'] != 'login') {
-            header('Location: /admin/user/login');
+            header('Location: /user/login');
         }
-        header('Location: /admin');
     }
 }

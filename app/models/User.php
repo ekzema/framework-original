@@ -57,7 +57,7 @@ class User extends Model
             if ($user) {
                 if (password_verify($password, $user->password)) {
                     unset($user->password);
-                    $_SESSION['user'] = $user;
+                    $_SESSION['user'] = (array)$user;
                     return true;
                 }
             }
